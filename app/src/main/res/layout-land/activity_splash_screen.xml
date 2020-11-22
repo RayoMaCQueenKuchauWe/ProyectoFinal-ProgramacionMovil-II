@@ -9,13 +9,12 @@
 
     <ImageView
         android:id="@+id/ivIgnis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="316dp"
+        android:layout_height="433dp"
         android:src="@drawable/ignis"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,62 +22,61 @@
         android:id="@+id/tvEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="cursive"
         android:text="Contacto: team.ignis@gmail.com"
-        android:textAlignment="center"
         android:textColor="#251C1C"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivIgnis" />
-
-    <TextView
-        android:id="@+id/tvCopy"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="cursive"
-        android:text="© 2020 - Todos los derechos reservados"
-        android:textAlignment="center"
-        android:textColor="#251C1C"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMembers" />
-
-    <TextView
-        android:id="@+id/tvTeam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="166dp"
-        android:layout_marginBottom="81dp"
-        android:fontFamily="cursive"
-        android:text="Team Ignis"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="70sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivIgnis" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTeam" />
 
     <TextView
         android:id="@+id/tvMembers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_width="379dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="cursive"
         android:text="Desarrollado por: Peter Calcina, Andres Condori, Miguel Angel"
         android:textAlignment="center"
         android:textColor="#251C1C"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.379"
+        app:layout_constraintStart_toEndOf="@+id/ivIgnis"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+    <TextView
+        android:id="@+id/tvCopy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="72dp"
+        android:fontFamily="cursive"
+        android:text="© 2020 - Todos los derechos reservados"
+        android:textAlignment="center"
+        android:textColor="#251C1C"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivIgnis"
+        app:layout_constraintTop_toBottomOf="@+id/tvMembers" />
+
+    <TextView
+        android:id="@+id/tvTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="56dp"
+        android:fontFamily="cursive"
+        android:text="Team Ignis"
+        android:textColor="#000000"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
