@@ -15,8 +15,8 @@ public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_SCREEN = 5000;
     //Variables
     Animation topAnim, bottomAnim;
-    ImageView ivLogo;
-    TextView tvCorreo, tvCopy;
+    ImageView ivIgnis;
+    TextView tvEmail, tvCopy, tvMembers, tvTeam;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +27,16 @@ public class SplashScreen extends AppCompatActivity {
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
         //Hooks
-        ivLogo = findViewById(R.id.imageView);
-        tvCorreo = findViewById(R.id.tvCorreo);
+        ivIgnis = findViewById(R.id.ivIgnis);
+        tvTeam = findViewById(R.id.tvTeam);
+        tvEmail = findViewById(R.id.tvEmail);
+        tvMembers = findViewById(R.id.tvMembers);
         tvCopy = findViewById(R.id.tvCopy);
 
-        ivLogo.setAnimation(topAnim);
-        tvCorreo.setAnimation(bottomAnim);
+        ivIgnis.setAnimation(topAnim);
+        tvTeam.setAnimation(topAnim);
+        tvEmail.setAnimation(bottomAnim);
+        tvMembers.setAnimation(bottomAnim);
         tvCopy.setAnimation(bottomAnim);
 
         new Handler().postDelayed(new Runnable() {
