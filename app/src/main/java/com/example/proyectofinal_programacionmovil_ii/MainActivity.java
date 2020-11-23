@@ -69,8 +69,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 break;
             case R.id.nav_about:
-                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intent);
+               // Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                //startActivity(intent);
+                Toast.makeText(this,"About", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_add:
                 Toast.makeText(this, "New form", Toast.LENGTH_SHORT).show();
