@@ -14,9 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_SCREEN = 5000;
     //Variables
-    Animation topAnim, bottomAnim;
-    ImageView ivIgnis;
-    TextView tvEmail, tvCopy, tvMembers, tvTeam;
+    private Animation topAnim, bottomAnim;
+    private ImageView ivIgnis;
+    private TextView tvEmail, tvCopy, tvMembers, tvTeam;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         //Animation
         topAnim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
         //Hooks
         ivIgnis = findViewById(R.id.ivIgnis);
         tvTeam = findViewById(R.id.tvTeam);

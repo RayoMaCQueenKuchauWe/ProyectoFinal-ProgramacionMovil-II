@@ -14,15 +14,25 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Variable
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+    //Fragments
+    private HomeFragment homeFragment;
+    private AboutFragment aboutFragment;
+    private AddFragment addFragment;
+    //Instance the fragments
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,21 +79,53 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 break;
             case R.id.nav_about:
-               // Intent intent = new Intent(MainActivity.this, AboutActivity.class);
-                //startActivity(intent);
                 Toast.makeText(this,"About", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_add:
-                Toast.makeText(this, "New form", Toast.LENGTH_SHORT).show();
+                try {
+                    if (DeleteFragment()) {
+                        fragmentManager = getSupportFragmentManager();
+                        addFragment = new AddFragment();
+                        addFragment.setArguments(getIntent().getExtras());
+                        fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.add(R.id.idPanel, addFragment, "add");
+                        fragmentTransaction.commit();
+                        navigationView.setCheckedItem(R.id.nav_add);
+                    } else {
+                        Toast.makeText(this, "Remove view", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception ex) {
+                    Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.nav_close:
                 Toast.makeText(this, "Close", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_login:
+                //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                //startActivity(intent);
                 Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private boolean DeleteFragment() {
+        boolean res = false;
+        fragmentManager = getSupportFragmentManager();
+        if (fragmentManager.findFragmentByTag("home") != null) {
+            getSupportFragmentManager().beginTransaction().remove(homeFragment).commit();
+            res = false;
+        } else if (fragmentManager.findFragmentByTag("about") != null) {
+            getSupportFragmentManager().beginTransaction().remove(aboutFragment).commit();
+            res = false;
+        } else if (fragmentManager.findFragmentByTag("add") != null) {
+            getSupportFragmentManager().beginTransaction().remove(addFragment).commit();
+            res = false;
+        } else {
+            res = true;
+        }
+        return res;
     }
 }
