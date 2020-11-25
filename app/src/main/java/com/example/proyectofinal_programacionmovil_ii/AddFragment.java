@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.proyectofinal_programacionmovil_ii.models.AssistantDB;
 import com.example.proyectofinal_programacionmovil_ii.models.FormModel;
+import com.google.android.material.textfield.TextInputEditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +24,7 @@ public class AddFragment extends Fragment {
 
     /*------- Variable -------*/
     private View view;
-    private EditText etName, etMonth, etYear;
+    private TextInputEditText etName, etMonth, etYear;
     private Button btnSave;
     private FormModel formModel;
 
@@ -88,8 +89,8 @@ public class AddFragment extends Fragment {
                         String name, month;
                         int year;
                         name = etName.getText().toString().trim();
-                        month = etMonth.toString().trim();
-                        year = Integer.parseInt(etYear.toString().trim());
+                        month = etMonth.getText().toString().trim();
+                        year = Integer.parseInt(etYear.getText().toString().trim());
                         formModel = new FormModel(name, month, year);
                         assistantDB.InsertTable(formModel);
                         Toast.makeText(getContext(), "Created with success", Toast.LENGTH_SHORT).show();

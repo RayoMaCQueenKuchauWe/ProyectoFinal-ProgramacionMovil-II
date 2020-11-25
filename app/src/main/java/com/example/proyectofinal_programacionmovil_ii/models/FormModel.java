@@ -22,6 +22,10 @@ public class FormModel {
         return idForm;
     }
 
+    public void setIdForm(int idForm) {
+        this.idForm = idForm;
+    }
+
     public String getName() {
         return name;
     }

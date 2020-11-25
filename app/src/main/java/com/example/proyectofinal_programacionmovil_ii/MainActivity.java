@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AboutFragment aboutFragment;
     private AddFragment addFragment;
     //Instance the fragments
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
 
     @Override
@@ -83,17 +83,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_add:
                 try {
-                    if (DeleteFragment()) {
-                        fragmentManager = getSupportFragmentManager();
-                        addFragment = new AddFragment();
-                        addFragment.setArguments(getIntent().getExtras());
-                        fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.add(R.id.idPanel, addFragment, "add");
-                        fragmentTransaction.commit();
-                        navigationView.setCheckedItem(R.id.nav_add);
-                    } else {
-                        Toast.makeText(this, "Remove view", Toast.LENGTH_SHORT).show();
-                    }
+                    DeleteFragment();
+                    fragmentManager = getSupportFragmentManager();
+                    addFragment = new AddFragment();
+                    addFragment.setArguments(getIntent().getExtras());
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.idPanel, addFragment, "add");
+                    fragmentTransaction.commit();
+                    navigationView.setCheckedItem(R.id.nav_add);
                 } catch (Exception ex) {
                     Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
                 }
@@ -111,21 +108,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private boolean DeleteFragment() {
-        boolean res = false;
+    private void DeleteFragment() {
         fragmentManager = getSupportFragmentManager();
         if (fragmentManager.findFragmentByTag("home") != null) {
             getSupportFragmentManager().beginTransaction().remove(homeFragment).commit();
-            res = false;
         } else if (fragmentManager.findFragmentByTag("about") != null) {
             getSupportFragmentManager().beginTransaction().remove(aboutFragment).commit();
-            res = false;
         } else if (fragmentManager.findFragmentByTag("add") != null) {
             getSupportFragmentManager().beginTransaction().remove(addFragment).commit();
-            res = false;
         } else {
-            res = true;
+            Toast.makeText(this, "Ok", Toast.LENGTH_SHORT).show();
         }
-        return res;
     }
 }
