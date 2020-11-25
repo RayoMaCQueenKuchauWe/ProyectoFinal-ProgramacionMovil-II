@@ -10,7 +10,7 @@ public class AssistantDB extends SQLiteOpenHelper {
 
     private static final String NAME_DB = "DatabaseForm.db";
     private static final int VERSION_DB = 1;
-    private static final String TABLE_DB = "CREATE TABLE NewForm {idForm INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Name TEXT, Month TEXT, Year INTEGER, Active INTEGER NOT NULL}";
+    private static final String TABLE_DB = "CREATE TABLE NewForm (idForm INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Name TEXT, Month TEXT, Year INTEGER, Active INTEGER NOT NULL DEFAULT 1)";
 
     public AssistantDB(@Nullable Context context) {
         super(context, NAME_DB, null, VERSION_DB);
@@ -30,7 +30,7 @@ public class AssistantDB extends SQLiteOpenHelper {
     public void InsertTable(FormModel formModel) {
         SQLiteDatabase db = getWritableDatabase();
         if (db != null) {
-            db.execSQL("INSERT INTO NewForm (Name, Month, Year, Active) VALUES('"+ formModel.getName() +"', '"+ formModel.getMonth() +"', '"+ formModel.getYear() +"', '1')");
+            db.execSQL("INSERT INTO NewForm (Name, Month, Year) VALUES('"+ formModel.getName() +"', '"+ formModel.getMonth() +"', '"+ formModel.getYear() +"')");
             db.close();
         }
     }
