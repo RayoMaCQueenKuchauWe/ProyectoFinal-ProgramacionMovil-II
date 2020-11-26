@@ -2,13 +2,16 @@ package com.example.proyectofinal_programacionmovil_ii;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -58,8 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        //State the navigation
-        navigationView.setCheckedItem(R.id.nav_home);
+
+        HomeView();
     }
 
     @Override
@@ -77,25 +80,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()) {
             case R.id.nav_home:
+                HomeView();
                 break;
             case R.id.nav_about:
-                Toast.makeText(this,"About", Toast.LENGTH_LONG).show();
+                AboutView();
                 break;
             case R.id.nav_add:
-                try {
-                    DeleteFragment();
-                    fragmentManager = getSupportFragmentManager();
-                    addFragment = new AddFragment();
-                    addFragment.setArguments(getIntent().getExtras());
-                    fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.idPanel, addFragment, "add");
-                    fragmentTransaction.commit();
-                    navigationView.setCheckedItem(R.id.nav_add);
-                } catch (Exception ex) {
-                    Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
-                }
+                AddView();
                 break;
             case R.id.nav_close:
+                CloseView();
                 Toast.makeText(this, "Close", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_login:
@@ -119,5 +113,94 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             Toast.makeText(this, "Ok", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void HomeView() {
+        try {
+            DeleteFragment();
+            fragmentManager = getSupportFragmentManager();
+            homeFragment = new HomeFragment();
+            homeFragment.setArguments(getIntent().getExtras());
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.idPanel, homeFragment, "home");
+            fragmentTransaction.commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        } catch (Exception ex) {
+            Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void AboutView() {
+        try {
+            DeleteFragment();
+            fragmentManager = getSupportFragmentManager();
+            aboutFragment = new AboutFragment();
+            aboutFragment.setArguments(getIntent().getExtras());
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.idPanel, aboutFragment, "about");
+            fragmentTransaction.commit();
+            navigationView.setCheckedItem(R.id.nav_about);
+        } catch (Exception ex) {
+            Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void AddView() {
+        try {
+            DeleteFragment();
+            fragmentManager = getSupportFragmentManager();
+            addFragment = new AddFragment();
+            addFragment.setArguments(getIntent().getExtras());
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.idPanel, addFragment, "add");
+            fragmentTransaction.commit();
+            navigationView.setCheckedItem(R.id.nav_add);
+        } catch (Exception ex) {
+            Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void CloseView() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage("Do you want to leave the application?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        AlertDialog title = alert.create();
+        title.setTitle("Close");
+        title.show();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == event.KEYCODE_BACK) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("You are sure to get out of the system?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            builder.show();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
