@@ -12,6 +12,13 @@ public class FormModel {
     public FormModel() {
     }
 
+    public FormModel(int idForm, String name, String month, int year) {
+        this.idForm = idForm;
+        this.name = name;
+        this.month = month;
+        this.year = year;
+    }
+
     public FormModel(String name, String month, int year) {
         this.name = name;
         this.month = month;
