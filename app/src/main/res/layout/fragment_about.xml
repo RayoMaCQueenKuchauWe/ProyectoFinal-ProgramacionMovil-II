@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="We are a small community that wants to reach the top of the world, presenting new technologies, designs around the customer's requirement, we are closer to you. Together we are more supportive of our cause. <IGNIS>"
+            android:text="@string/AboutContext"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="16sp"

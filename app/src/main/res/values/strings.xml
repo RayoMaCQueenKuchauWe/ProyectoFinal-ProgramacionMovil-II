@@ -5,4 +5,5 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="AboutContext"><![CDATA[We are a small community that wants to reach the top of the world, presenting new technologies, designs around the customer\'s requirement, we are closer to you. Together we are more supportive of our cause. <IGNIS>]]></string>
 </resources>

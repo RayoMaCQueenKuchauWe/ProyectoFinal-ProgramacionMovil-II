@@ -8,23 +8,33 @@ import androidx.annotation.Nullable;
 
 public class AssistantDB extends SQLiteOpenHelper {
 
-    private static final String NAME_DB = "DatabaseForm.db";
+    private static final String NAME_DB = "DatabaseForm.db",  TABLE_DB = "NewForm";;
     private static final int VERSION_DB = 1;
-    private static final String TABLE_DB = "CREATE TABLE NewForm (idForm INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Name TEXT, Month TEXT, Year INTEGER, Active INTEGER NOT NULL DEFAULT 1)";
+
+    public static String getNameDb() {
+        return NAME_DB;
+    }
+
+    public static String getTableDb() {
+        return TABLE_DB;
+    }
+
+    public static int getVersionDb() {
+        return VERSION_DB;
+    }
 
     public AssistantDB(@Nullable Context context) {
-        super(context, NAME_DB, null, VERSION_DB);
+        super(context, NAME_DB,null,VERSION_DB);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(TABLE_DB);
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS NewForm(idForm INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL,Month TEXT NOT NULL, Year INTEGER NOT NULL, State DEFAULT 1);");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_DB);
-        sqLiteDatabase.execSQL(TABLE_DB);
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
     }
 
     public void InsertTable(FormModel formModel) {
