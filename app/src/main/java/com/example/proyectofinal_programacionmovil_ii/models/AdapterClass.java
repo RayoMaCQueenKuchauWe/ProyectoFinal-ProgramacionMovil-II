@@ -12,8 +12,9 @@ import com.example.proyectofinal_programacionmovil_ii.R;
 
 import java.util.ArrayList;
 
-public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDatos> {
+public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDatos> implements View.OnClickListener{
     ArrayList<FormModel> listForm;
+    private View.OnClickListener listener;
 
     public AdapterClass(ArrayList<FormModel> listForm) {
         this.listForm = listForm;
@@ -23,6 +24,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
     @Override
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_view,null,false);
+        view.setOnClickListener(this);
         return new ViewHolderDatos(view);
     }
 
@@ -34,6 +36,17 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
     @Override
     public int getItemCount() {
         return listForm.size();
+    }
+
+    public  void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(listener != null){
+            listener.onClick(v);
+        }
     }
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
@@ -48,10 +61,11 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
         }
 
         public void Assigndata(FormModel formModel) {
-            tvIdForm.setText("." + formModel.getIdForm());
+            tvIdForm.setText(String.valueOf(formModel.getIdForm()));
             tvTitle.setText(formModel.getName());
             tvMonth.setText("Month: " + formModel.getMonth());
             tvYear.setText("Year: " + formModel.getYear());
         }
+
     }
 }

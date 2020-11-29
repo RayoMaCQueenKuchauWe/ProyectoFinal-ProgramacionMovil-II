@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class AssistantDB extends SQLiteOpenHelper {
 
-    private static final String NAME_DB = "DatabaseForm.db",  TABLE_DB = "NewForm";;
+    private static final String NAME_DB = "DatabaseForm.db",  TABLE_DB = "NewForm", TABLE_BILL = "NewBill";
     private static final int VERSION_DB = 1;
 
     public static String getNameDb() {
@@ -17,6 +17,10 @@ public class AssistantDB extends SQLiteOpenHelper {
 
     public static String getTableDb() {
         return TABLE_DB;
+    }
+
+    public static String getTableBill() {
+        return TABLE_BILL;
     }
 
     public static int getVersionDb() {
@@ -30,6 +34,7 @@ public class AssistantDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS NewForm(idForm INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL,Month TEXT NOT NULL, Year INTEGER NOT NULL, State DEFAULT 1);");
+        sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS NewBill(idBill INTEGER PRIMARY KEY AUTOINCREMENT, NIT INTEGER NOT NULL,NroBill INTEGER NOT NULL, NroAuthorization INTEGER NOT NULL, DateIssued TEXT NOT NULL, Import REAL NOT NULL,CodeControl TEXT NOT NULL, IDForm INTEGER NOT NULL, State DEFAULT 1);");
     }
 
     @Override
