@@ -15,11 +15,6 @@ import com.example.proyectofinal_programacionmovil_ii.models.AssistantDB;
 import com.example.proyectofinal_programacionmovil_ii.models.FormModel;
 import com.google.android.material.textfield.TextInputEditText;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddFragment extends Fragment {
 
     /*------- Variable -------*/
@@ -28,45 +23,6 @@ public class AddFragment extends Fragment {
     private Button btnSave;
     private FormModel formModel;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AddFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddFragment newInstance(String param1, String param2) {
-        AddFragment fragment = new AddFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,17 +72,22 @@ public class AddFragment extends Fragment {
         if (name.equals("")) {
             etName.setError("The field is empty");
             etName.requestFocus();
-            res = false;
         } else if (month.equals("")) {
             etMonth.setError("The field is empty");
             etMonth.requestFocus();
-            res = false;
         } else if (year.equals("")) {
             etYear.setError("The field is empty");
             etYear.requestFocus();
-            res = false;
+        } else if(month.equals("January") || month.equals("February") || month.equals("March") || month.equals("April") || month.equals("May") || month.equals("June") || month.equals("July") || month.equals("August") || month.equals("September") || month.equals("October") || month.equals("November") || month.equals("December")) {
+            if (Integer.parseInt(year) < 2020 || Integer.parseInt(year) > 2021) {
+                etYear.setError("The year should be between 2020 and 2021");
+                etYear.requestFocus();
+            } else {
+                res = true;
+            }
         } else {
-            res = true;
+            etMonth.setError("Incorrect format for the month. Example (January, February, etc.)");
+            etMonth.requestFocus();
         }
         return res;
     }
