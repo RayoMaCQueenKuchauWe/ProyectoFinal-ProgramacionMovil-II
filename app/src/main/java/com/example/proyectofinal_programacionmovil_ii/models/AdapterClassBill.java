@@ -1,8 +1,10 @@
 package com.example.proyectofinal_programacionmovil_ii.models;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,15 +36,18 @@ public class AdapterClassBill extends RecyclerView.Adapter<AdapterClassBill.View
         return listBills.size();
     }
 
-    public class ViewHolderDatos extends RecyclerView.ViewHolder {
+    public class ViewHolderDatos extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         TextView tvID, tvnroBill, tvDate, tvImport;
-
+        LinearLayout linearLayout;
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
             tvID = itemView.findViewById(R.id.tvIdFormB);
             tvnroBill = itemView.findViewById(R.id.tvBillB);
             tvDate = itemView.findViewById(R.id.tvDateB);
             tvImport = itemView.findViewById(R.id.tvImportB);
+            linearLayout = itemView.findViewById(R.id.idLinearFormat);
+
+            linearLayout.setOnCreateContextMenuListener(this);
         }
 
         public void Assigndata(BillClass billClass) {
@@ -52,5 +57,11 @@ public class AdapterClassBill extends RecyclerView.Adapter<AdapterClassBill.View
             tvImport.setText(String.valueOf(billClass.getImport()));
         }
 
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("Select an option");
+            menu.add(getAdapterPosition(), 101, 0, "Edit");
+            menu.add(getAdapterPosition(), 102, 1, "Delete");
+        }
     }
 }

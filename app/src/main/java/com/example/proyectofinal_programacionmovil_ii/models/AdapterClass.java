@@ -1,8 +1,10 @@
 package com.example.proyectofinal_programacionmovil_ii.models;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,15 +51,18 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
         }
     }
 
-    public class ViewHolderDatos extends RecyclerView.ViewHolder {
+    public class ViewHolderDatos extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         TextView tvTitle, tvMonth, tvYear, tvIdForm;
-
+        LinearLayout linearLayout;
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
             tvIdForm = itemView.findViewById(R.id.tvIdForm);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvMonth = itemView.findViewById(R.id.tvMonth);
             tvYear = itemView.findViewById(R.id.tvYear);
+            linearLayout = itemView.findViewById(R.id.idLinearForm);
+
+            linearLayout.setOnCreateContextMenuListener(this);
         }
 
         public void Assigndata(FormModel formModel) {
@@ -67,5 +72,11 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
             tvYear.setText("Year: " + formModel.getYear());
         }
 
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.setHeaderTitle("Select an option");
+            menu.add(getAdapterPosition(), 101, 0, "Edit");
+            menu.add(getAdapterPosition(), 102, 1, "Delete");
+        }
     }
 }
