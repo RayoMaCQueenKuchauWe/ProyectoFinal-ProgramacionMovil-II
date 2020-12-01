@@ -51,14 +51,6 @@ public class HomeFragment extends Fragment{
         rvListForms = view.findViewById(R.id.rvList);
         rvListForms.setLayoutManager(new GridLayoutManager(getContext(),1));
         loadRecycler();
-
-        rvListForms.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                position = listForm.get(rvListForms.getChildAdapterPosition(v)).getIdForm();
-                return false;
-            }
-        });
         return view;
     }
     private void loadListBDD() {
@@ -84,6 +76,18 @@ public class HomeFragment extends Fragment{
         listForm = new ArrayList<FormModel>();
         loadListBDD();
         adapter =  new AdapterClass(listForm);
+
+        adapter.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                idForm = listForm.get(rvListForms.getChildAdapterPosition(v)).getIdForm();
+                name = listForm.get(rvListForms.getChildAdapterPosition(v)).getName();
+                month = listForm.get(rvListForms.getChildAdapterPosition(v)).getMonth();
+                year = listForm.get(rvListForms.getChildAdapterPosition(v)).getYear();
+                return false;
+            }
+        });
+
         adapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,16 +124,63 @@ public class HomeFragment extends Fragment{
     private void callEditForm() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         View view = getLayoutInflater().inflate(R.layout.edit_form, null);
-        final TextInputEditText etName = (TextInputEditText) view.findViewById(R.id.txtNameEdit);
-        final TextInputEditText etMonth = (TextInputEditText) view.findViewById(R.id.txtMonthEdit);
-        final TextInputEditText etYear = (TextInputEditText) view.findViewById(R.id.txtYearEdit);
+        final TextInputEditText etNameEdit = (TextInputEditText) view.findViewById(R.id.txtNameEdit);
+        final TextInputEditText etMonthEdit = (TextInputEditText) view.findViewById(R.id.txtMonthEdit);
+        final TextInputEditText etYearEdit = (TextInputEditText) view.findViewById(R.id.txtYearEdit);
+        final AssistantDB assistantDB = new AssistantDB(getContext());
 
         Button btnEdit = (Button) view.findViewById(R.id.btnEdit);
+
+        etNameEdit.setText(name);
+        etMonthEdit.setText(month);
+        etYearEdit.setText(String.valueOf(year));
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Edit", Toast.LENGTH_SHORT).show();
+                try {
+                    String name, month, year;
+                    name = etNameEdit.getText().toString().trim();
+                    month = etMonthEdit.getText().toString().trim();
+                    year = etYearEdit.getText().toString().trim();
+                    if (name.equals("")) {
+                        etNameEdit.setError("The field is empty");
+                        etNameEdit.requestFocus();
+                        return;
+                    }
+                    if (month.equals("")) {
+                        etMonthEdit.setError("The field is empty");
+                        etMonthEdit.requestFocus();
+                        return;
+                    }
+                    if (year.equals("")) {
+                        etYearEdit.setError("The field is empty");
+                        etYearEdit.requestFocus();
+                        return;
+                    }
+                    if(month.equals("January") || month.equals("February") || month.equals("March") || month.equals("April") || month.equals("May") || month.equals("June") || month.equals("July") || month.equals("August") || month.equals("September") || month.equals("October") || month.equals("November") || month.equals("December")) {
+                        //
+                    } else {
+                        etMonthEdit.setError("Incorrect format for the month. Example (January, February, etc.)");
+                        etMonthEdit.requestFocus();
+                        return;
+                    }
+                    if (Integer.parseInt(year) < 2020 || Integer.parseInt(year) > 2021) {
+                        etYearEdit.setError("The year should be between 2020 and 2021");
+                        etYearEdit.requestFocus();
+                        return;
+                    }
+
+                    int yearEdit = Integer.parseInt(etYearEdit.getText().toString().trim());
+                    formModel = new FormModel(idForm, name, month, yearEdit);
+                    assistantDB.UpdateTabla(formModel);
+                    Toast.makeText(getContext(), "Form updated correctly", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(),MainActivity.class);
+                    startActivity(intent);
+
+                } catch (Exception ex) {
+                    Toast.makeText(getContext(), "Error: " + ex, Toast.LENGTH_LONG).show();
+                }
             }
         });
         builder.setView(view);

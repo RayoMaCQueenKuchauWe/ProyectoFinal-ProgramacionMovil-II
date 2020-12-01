@@ -14,9 +14,10 @@ import com.example.proyectofinal_programacionmovil_ii.R;
 
 import java.util.ArrayList;
 
-public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDatos> implements View.OnClickListener{
+public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDatos> implements View.OnClickListener, View.OnLongClickListener{
     ArrayList<FormModel> listForm;
     private View.OnClickListener listener;
+    private View.OnLongClickListener longListener;
 
     public AdapterClass(ArrayList<FormModel> listForm) {
         this.listForm = listForm;
@@ -27,6 +28,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_view,null,false);
         view.setOnClickListener(this);
+        view.setOnLongClickListener(this);
         return new ViewHolderDatos(view);
     }
 
@@ -43,12 +45,21 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
     public  void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
+    public  void setOnLongClickListener(View.OnLongClickListener longListener) {this.longListener = longListener;}
 
     @Override
     public void onClick(View v) {
         if(listener != null){
             listener.onClick(v);
         }
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        if(longListener != null){
+            longListener.onLongClick(v);
+        }
+        return false;
     }
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder implements  View.OnCreateContextMenuListener{
