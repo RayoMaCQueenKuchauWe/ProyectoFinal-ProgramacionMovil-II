@@ -1,5 +1,6 @@
 package com.example.proyectofinal_programacionmovil_ii;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.example.proyectofinal_programacionmovil_ii.models.AdapterClassBill;
 import com.example.proyectofinal_programacionmovil_ii.models.AssistantDB;
 import com.example.proyectofinal_programacionmovil_ii.models.BillClass;
 import com.example.proyectofinal_programacionmovil_ii.models.FormModel;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
@@ -88,7 +91,7 @@ public class FragmentListBill extends Fragment {
                 Toast.makeText(getContext(), "Edit", Toast.LENGTH_SHORT).show();
                 return true;
             case 102:
-                Toast.makeText(getContext(), "Delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Delet", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return false;

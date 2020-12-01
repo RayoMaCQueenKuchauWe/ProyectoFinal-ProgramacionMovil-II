@@ -51,7 +51,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
         }
     }
 
-    public class ViewHolderDatos extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
+    public class ViewHolderDatos extends RecyclerView.ViewHolder implements  View.OnCreateContextMenuListener{
         TextView tvTitle, tvMonth, tvYear, tvIdForm;
         LinearLayout linearLayout;
         public ViewHolderDatos(@NonNull View itemView) {
@@ -75,8 +75,10 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderDa
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select an option");
-            menu.add(getAdapterPosition(), 101, 0, "Edit");
-            menu.add(getAdapterPosition(), 102, 1, "Delete");
+            menu.add(getAdapterPosition(), 1001, 0, "Edit Form");
+            menu.add(getAdapterPosition(), 1002, 1, "Delete Form");
+
+
         }
     }
 }
