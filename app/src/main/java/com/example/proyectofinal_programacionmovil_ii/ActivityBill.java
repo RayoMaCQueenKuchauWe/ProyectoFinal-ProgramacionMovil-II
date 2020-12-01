@@ -103,17 +103,17 @@ public class ActivityBill extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
          if (fragmentManager.findFragmentByTag("bill") != null) {
              getSupportFragmentManager().beginTransaction().remove(fragmentAddBill).commit();
-         } else if(fragmentManager.findFragmentByTag("list") != null) {
+         }
+         if(fragmentManager.findFragmentByTag("list") != null) {
              getSupportFragmentManager().beginTransaction().remove(fragmentListBill).commit();
-         } else {
-            Toast.makeText(this, "Ok", Toast.LENGTH_SHORT).show();
-        }
+         }
     }
 
     private void HomeView() {
         try {
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
+            DeleteFragment();
         } catch (Exception ex) {
             Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
         }
