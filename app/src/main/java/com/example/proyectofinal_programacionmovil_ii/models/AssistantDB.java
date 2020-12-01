@@ -49,4 +49,12 @@ public class AssistantDB extends SQLiteOpenHelper {
             db.close();
         }
     }
+
+    public void UpdateTabla(FormModel formModel) {
+        SQLiteDatabase db = getWritableDatabase();
+        if(db != null) {
+            db.execSQL("UPDATE NewForm SET Name = '" + formModel.getName() + "', Month = '"+ formModel.getMonth() + "', Year = "+ formModel.getYear() +" WHERE idForm = " + formModel.getIdForm());
+            db.close();
+        }
+    }
 }
