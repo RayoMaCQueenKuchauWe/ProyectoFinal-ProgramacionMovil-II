@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/bill_home"
+            android:title="Home"/>
+        <item
+            android:id="@+id/bill_add"
+            android:title="Add bill"/>
+        <item
+            android:id="@+id/bill_list"
+            android:title="List bill"/>
+        <item
+            android:id="@+id/bill_qr"
+            android:title="Add bill - QR"/>
+    </group>
+</menu>

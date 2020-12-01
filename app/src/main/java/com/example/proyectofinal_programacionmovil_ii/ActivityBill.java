@@ -15,16 +15,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class ActivityBill extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ActivityBill extends AppCompatActivity {
 
     //Variable
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
     private Toolbar toolbar;
     //Fragments
     private FragmentAddBill fragmentAddBill;
@@ -56,46 +55,29 @@ public class ActivityBill extends AppCompatActivity implements NavigationView.On
         fragmentListBill.setArguments(bundleArgs);
 
         /*------------ Hooks ------------*/
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
         /*------------ Tool Bar ------------*/
         setSupportActionBar(toolbar);
 
-        /*------------ Navigation Drawer Menu ------------*/
-        //Hide or show items
-        Menu menu = navigationView.getMenu();
-        menu.findItem(R.id.nav_profile).setVisible(false);
-        menu.findItem(R.id.nav_logout).setVisible(false);
-        //Setting
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-
         ListBill(fragmentListBill);
     }
 
     @Override
-    public void onBackPressed() {
-
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_bill, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.nav_home:
+            case R.id.bill_home:
                 HomeView();
                 break;
-            case R.id.nav_about:
+            case R.id.bill_add:
                 Bundle bundleArgs = new Bundle();
                 bundleArgs.putInt("idForm",idForm);
                 FragmentAddBill fragmentAddBill = new FragmentAddBill();
@@ -103,20 +85,14 @@ public class ActivityBill extends AppCompatActivity implements NavigationView.On
 
                 AddBill(fragmentAddBill);
                 break;
-            case R.id.nav_add:
+            case R.id.bill_list:
                 ListBill(fragmentListBill);
                 break;
-            case R.id.nav_close:
+            case R.id.bill_qr:
                 //CloseView();
-                Toast.makeText(this, "Close", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_login:
-                //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                //startActivity(intent);
-                Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "QR", Toast.LENGTH_SHORT).show();
                 break;
         }
-        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -150,7 +126,6 @@ public class ActivityBill extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.add(R.id.idPanel, fragmentAddBill, "bill");
             fragmentTransaction.replace(R.id.FragmentAddBill, fragmentAddBillArgs);
             fragmentTransaction.commit();
-            navigationView.setCheckedItem(R.id.nav_about);
         } catch (Exception ex) {
             Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
         }
@@ -166,7 +141,6 @@ public class ActivityBill extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.add(R.id.idPanel, fragmentListBill, "list");
             fragmentTransaction.replace(R.id.FragmentList, fragmentListBillArgs);
             fragmentTransaction.commit();
-            navigationView.setCheckedItem(R.id.nav_add);
         } catch (Exception ex) {
             Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
         }

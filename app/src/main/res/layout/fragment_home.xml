@@ -12,8 +12,10 @@
         android:layout_margin="6dp"
         android:padding="2dp"
         android:text="List the form"
+        android:textColor="#BA1334"
+        android:fontFamily="@font/baloo"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

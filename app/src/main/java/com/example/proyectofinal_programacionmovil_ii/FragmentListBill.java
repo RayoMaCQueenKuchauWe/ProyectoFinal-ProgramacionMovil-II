@@ -5,14 +5,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.proyectofinal_programacionmovil_ii.models.AdapterClass;
 import com.example.proyectofinal_programacionmovil_ii.models.AdapterClassBill;
@@ -75,5 +78,19 @@ public class FragmentListBill extends Fragment {
         loadListBDD();
         adapter =  new AdapterClassBill(listBills);
         rvListBills.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        super.onContextItemSelected(item);
+        switch (item.getItemId()) {
+            case 101:
+                Toast.makeText(getContext(), "Edit", Toast.LENGTH_SHORT).show();
+                return true;
+            case 102:
+                Toast.makeText(getContext(), "Delete", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return false;
     }
 }

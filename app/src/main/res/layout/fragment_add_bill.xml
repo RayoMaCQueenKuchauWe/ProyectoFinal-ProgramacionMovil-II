@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:fontFamily="sans-serif"
             android:text="Add New Bill"
+            android:fontFamily="@font/baloo"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="#BA1334"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -38,6 +38,7 @@
                     android:id="@+id/TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/aclonica"
                     android:text="NIT Supplier" />
 
                 <EditText
@@ -173,6 +174,8 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo"
+            android:textSize="20dp"
             android:text="Add Bill" />
 
     </LinearLayout>
