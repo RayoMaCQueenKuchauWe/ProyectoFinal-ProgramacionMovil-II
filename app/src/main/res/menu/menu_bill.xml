@@ -13,5 +13,8 @@
         <item
             android:id="@+id/bill_qr"
             android:title="Add bill - QR"/>
+        <item
+            android:id="@+id/bill_export"
+            android:title="Export bills to Excel"/>
     </group>
 </menu>

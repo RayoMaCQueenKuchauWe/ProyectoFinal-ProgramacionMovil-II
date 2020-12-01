@@ -92,6 +92,9 @@ public class ActivityBill extends AppCompatActivity {
                 //CloseView();
                 Toast.makeText(this, "QR", Toast.LENGTH_SHORT).show();
                 break;
+            case  R.id.bill_export:
+                Toast.makeText(this, "Export to Excel", Toast.LENGTH_SHORT).show();
+                break;
         }
         return true;
     }
