@@ -106,12 +106,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager = getSupportFragmentManager();
         if (fragmentManager.findFragmentByTag("home") != null) {
             getSupportFragmentManager().beginTransaction().remove(homeFragment).commit();
-        } else if (fragmentManager.findFragmentByTag("about") != null) {
+        }
+        if (fragmentManager.findFragmentByTag("about") != null) {
             getSupportFragmentManager().beginTransaction().remove(aboutFragment).commit();
-        } else if (fragmentManager.findFragmentByTag("add") != null) {
+        }
+        if (fragmentManager.findFragmentByTag("add") != null) {
             getSupportFragmentManager().beginTransaction().remove(addFragment).commit();
-        } else {
-            Toast.makeText(this, "Ok", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
+                        finishAffinity();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
