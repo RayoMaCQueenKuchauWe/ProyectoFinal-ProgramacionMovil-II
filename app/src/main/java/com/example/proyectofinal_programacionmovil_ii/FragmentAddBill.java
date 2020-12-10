@@ -5,29 +5,24 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.text.InputType;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.proyectofinal_programacionmovil_ii.models.AssistantDB;
 import com.example.proyectofinal_programacionmovil_ii.models.BillClass;
 import com.example.proyectofinal_programacionmovil_ii.models.ControllerBill;
 import com.example.proyectofinal_programacionmovil_ii.models.DatePickerFragment;
-import com.example.proyectofinal_programacionmovil_ii.models.FormModel;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class FragmentAddBill extends Fragment {
 
-    private EditText etNit, etNroBill, etAuthorization, etAmount, etCode, etDate;
+    private TextInputEditText etNit, etNroBill, etAuthorization, etAmount, etCode, etDate;
     private Button btnAddBill;
     private View view;
     private BillClass billClass;
@@ -37,12 +32,12 @@ public class FragmentAddBill extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add_bill, container, false);
-        etNit = view.findViewById(R.id.etSupplier);
-        etNroBill = view.findViewById(R.id.etNroBill);
-        etAuthorization = view.findViewById(R.id.etAuthorization);
-        etAmount = view.findViewById(R.id.etAmount);
-        etCode = view.findViewById(R.id.etCodeControl);
-        etDate = view.findViewById(R.id.etDate);
+        etNit = view.findViewById(R.id.txtSupplier);
+        etNroBill = view.findViewById(R.id.txtNroBill);
+        etAuthorization = view.findViewById(R.id.txtAuthorization);
+        etAmount = view.findViewById(R.id.txtAmount);
+        etCode = view.findViewById(R.id.txtCodeControl);
+        etDate = view.findViewById(R.id.txtDate);
         btnAddBill = view.findViewById(R.id.btnAddBill);
         controllerBill = new ControllerBill(getContext());
 

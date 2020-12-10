@@ -79,7 +79,7 @@ public class ActivityBill extends AppCompatActivity {
                 break;
             case R.id.bill_add:
                 Bundle bundleArgs = new Bundle();
-                bundleArgs.putInt("idForm",idForm);
+                bundleArgs.putInt("idForm", idForm);
                 FragmentAddBill fragmentAddBill = new FragmentAddBill();
                 fragmentAddBill.setArguments(bundleArgs);
 
@@ -89,14 +89,23 @@ public class ActivityBill extends AppCompatActivity {
                 ListBill(fragmentListBill);
                 break;
             case R.id.bill_qr:
-                //CloseView();
-                Toast.makeText(this, "QR", Toast.LENGTH_SHORT).show();
+                AddBillQR();
                 break;
             case  R.id.bill_export:
                 Toast.makeText(this, "Export to Excel", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
+    }
+
+    private void AddBillQR() {
+        try {
+            Intent intent = new Intent(getApplicationContext(), QrActivity.class);
+            startActivity(intent);
+            DeleteFragment();
+        } catch (Exception ex) {
+            Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void DeleteFragment() {
