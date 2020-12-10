@@ -90,12 +90,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_close:
                 CloseView();
-                Toast.makeText(this, "Close", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_login:
-                //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                //startActivity(intent);
-                Toast.makeText(this, "Login", Toast.LENGTH_SHORT).show();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

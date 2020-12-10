@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:fontFamily="@font/aclonica"
-            android:text="@string/AboutContext"
+            android:text="@string/conceptMenu"
             android:textAlignment="center"
             android:textColor="#FFF"
             android:textSize="16sp"

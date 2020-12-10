@@ -19,33 +19,33 @@
 
         <TextView
             android:id="@+id/tvBillB"
-            android:layout_width="2in"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:fontFamily="@font/aclonica"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"/>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvDateB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="textEnd"
             android:fontFamily="@font/aclonica"
+            android:textAlignment="textEnd"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvImportB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textAlignment="center"
             android:fontFamily="@font/aclonica"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

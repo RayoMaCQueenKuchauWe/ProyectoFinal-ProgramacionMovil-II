@@ -4,68 +4,68 @@
     android:id="@+id/FragmentList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentListBill"
-    android:layout_marginLeft="7dp"
-    android:layout_marginRight="7dp">
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    tools:context=".FragmentListBill">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
+        android:fontFamily="@font/baloo"
         android:padding="2dp"
         android:textAlignment="center"
-        android:fontFamily="@font/baloo"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:fontFamily="@font/baloo"
         android:layout_marginTop="55dp"
+        android:fontFamily="@font/baloo"
         android:text="List of Bills"
-        android:textColor="#BA1334"/>
+        android:textAlignment="center"
+        android:textColor="#BA1334"
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="100dp"
         android:background="#850C25"
-        android:layout_marginTop="100dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/baloo"
             android:text="N° Bill"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:fontFamily="@font/baloo"/>
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/baloo"
             android:text="Date Issued"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:fontFamily="@font/baloo"/>
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/baloo"
             android:text="Import"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:fontFamily="@font/baloo"/>
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -73,5 +73,5 @@
         android:id="@+id/rvListBill"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="160dp" />
+        android:layout_marginTop="140dp" />
 </FrameLayout>
