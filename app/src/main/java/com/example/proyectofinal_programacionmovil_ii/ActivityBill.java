@@ -100,7 +100,11 @@ public class ActivityBill extends AppCompatActivity {
 
     private void AddBillQR() {
         try {
+            Bundle extras = new Bundle();
+            extras.putInt("idForm", idForm);
+
             Intent intent = new Intent(getApplicationContext(), QrActivity.class);
+            intent.putExtras(extras);
             startActivity(intent);
             DeleteFragment();
         } catch (Exception ex) {

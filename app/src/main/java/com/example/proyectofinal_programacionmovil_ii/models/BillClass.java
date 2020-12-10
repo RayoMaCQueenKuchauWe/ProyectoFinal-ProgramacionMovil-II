@@ -16,6 +16,7 @@ public class BillClass {
         CodeControl = codeControl;
         this.idForm = idForm;
     }
+
     public BillClass( int NIT, int nroBill, int nroAuthorization, double Import, String dateIssued, String codeControl, int idForm) {
         this.NIT = NIT;
         NroBill = nroBill;
@@ -25,6 +26,7 @@ public class BillClass {
         CodeControl = codeControl;
         this.idForm = idForm;
     }
+
     public BillClass(int idBill, int nroBill, String date, int Import){
         this.idBill = idBill;
         NroBill = nroBill;
