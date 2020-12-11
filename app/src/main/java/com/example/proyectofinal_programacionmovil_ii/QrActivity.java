@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -59,7 +60,9 @@ public class QrActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }//FinOncreate
@@ -72,10 +75,10 @@ public class QrActivity extends AppCompatActivity {
 
             nit = data.substring(0,9);
             bill = data.substring(9,12);
-            authorization = data.substring(12,21);
-            date = data.substring(21,32);
-            total = data.substring(32,35);
-            code = data.substring(35,46);
+            authorization = data.substring(12,20);
+            date = data.substring(20,30);
+            total = data.substring(31,34);
+            code = data.substring(34,48);
 
             setContentView(R.layout.activity_qr);
             scannerView.stopCamera();
