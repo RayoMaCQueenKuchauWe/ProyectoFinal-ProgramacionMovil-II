@@ -106,7 +106,6 @@ public class ActivityBill extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), QrActivity.class);
             intent.putExtras(extras);
             startActivity(intent);
-            DeleteFragment();
         } catch (Exception ex) {
             Toast.makeText(this, "Error: " + ex, Toast.LENGTH_SHORT).show();
         }

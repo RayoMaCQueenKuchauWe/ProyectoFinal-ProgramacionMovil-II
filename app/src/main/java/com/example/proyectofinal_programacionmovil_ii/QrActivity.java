@@ -25,7 +25,7 @@ public class QrActivity extends AppCompatActivity {
 
     private ZXingScannerView scannerView;
     private TextView nitQr, billQr, authorizationQr, dateQr, totalQr, codeQr;
-    private Button btnScanner, btnAdd;
+    private Button btnScanner;
     private RecyclerView rvListQR;
     private ArrayList<BillClass> listBills;
     BillClass billClass;
@@ -42,7 +42,6 @@ public class QrActivity extends AppCompatActivity {
         idForm = bundle.getInt("idForm");
 
         btnScanner = findViewById(R.id.btnScanner);
-        btnAdd = findViewById(R.id.btnAddQR);
         rvListQR = findViewById(R.id.rvListQr);
         rvListQR.setLayoutManager(new GridLayoutManager(this,1));
         listBills = new ArrayList<BillClass>();
@@ -54,15 +53,6 @@ public class QrActivity extends AppCompatActivity {
                 setContentView(scannerView);
                 scannerView.setResultHandler(new ZScanner());
                 scannerView.startCamera();
-            }
-        });
-
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
     }//FinOncreate

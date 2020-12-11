@@ -145,15 +145,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
         android:text="Scanner Qr" />
-    <Button
-        android:id="@+id/btnAddQR"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:text="EXIT" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_margin="10dp"
