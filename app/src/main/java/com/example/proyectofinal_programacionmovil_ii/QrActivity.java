@@ -1,15 +1,21 @@
 package com.example.proyectofinal_programacionmovil_ii;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.proyectofinal_programacionmovil_ii.models.AdapterQR;
 import com.example.proyectofinal_programacionmovil_ii.models.BillClass;
 import com.google.zxing.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -18,9 +24,12 @@ public class QrActivity extends AppCompatActivity {
 
     private ZXingScannerView scannerView;
     private TextView nitQr, billQr, authorizationQr, dateQr, totalQr, codeQr;
-    private Button btnScanner;
-    private List<BillClass> listBill;
+    private Button btnScanner, btnAdd;
+    private RecyclerView rvListQR;
+    private ArrayList<BillClass> listBills;
     BillClass billClass;
+    private AdapterQR adapterQR;
+    private String nit, bill, authorization, total, date, code;
 
     int idForm;
     @Override
@@ -32,6 +41,10 @@ public class QrActivity extends AppCompatActivity {
         idForm = bundle.getInt("idForm");
 
         btnScanner = findViewById(R.id.btnScanner);
+        btnAdd = findViewById(R.id.btnAddQR);
+        rvListQR = findViewById(R.id.rvListQr);
+        rvListQR.setLayoutManager(new GridLayoutManager(this,1));
+        listBills = new ArrayList<BillClass>();
 
         btnScanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,23 +55,28 @@ public class QrActivity extends AppCompatActivity {
                 scannerView.startCamera();
             }
         });
-    }
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }//FinOncreate
 
     class ZScanner implements ZXingScannerView.ResultHandler {
 
         @Override
         public void handleResult(Result result) {
-            billClass = new BillClass();
             String data = result.getText();
 
-            String nit = data.substring(0,9);
-            String bill = data.substring(9,12);
-            String authorization = data.substring(12,27);
-            String date = data.substring(27,37);
-            String total = data.substring(38,44);
-            String code = data.substring(44,55);
+            nit = data.substring(0,9);
+            bill = data.substring(9,12);
+            authorization = data.substring(12,21);
+            date = data.substring(21,32);
+            total = data.substring(32,35);
+            code = data.substring(35,46);
 
-            listBill.add(new BillClass(Integer.parseInt(nit),Integer.parseInt(bill),Integer.parseInt(authorization),Double.parseDouble(total),date,code,idForm));
             setContentView(R.layout.activity_qr);
             scannerView.stopCamera();
 
@@ -79,6 +97,11 @@ public class QrActivity extends AppCompatActivity {
 
             codeQr = findViewById(R.id.tvCodeQr);
             codeQr.setText(code);
+
+            billClass =  new BillClass(Integer.parseInt(nit),Integer.parseInt(bill),Integer.parseInt(authorization),Double.parseDouble(total),date,code,idForm);
+            listBills.add(billClass);
+            adapterQR =  new AdapterQR(listBills);
+            rvListQR.setAdapter(adapterQR);
         }
     }
 }
